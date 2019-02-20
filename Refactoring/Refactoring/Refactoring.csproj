@@ -8,7 +8,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>Refactoring</RootNamespace>
     <AssemblyName>Refactoring</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -43,13 +43,57 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1\Credit.cs" />
-    <Compile Include="Class1\ICommon.cs" />
+    <Compile Include="Codes\CollapseHierarchy.cs" />
+    <Compile Include="Codes\Bank.cs" />
+    <Compile Include="Codes\ExtractInterface.cs" />
+    <Compile Include="Codes\ExtractSubclass.cs" />
+    <Compile Include="Codes\ExtractSuperclass.cs" />
+    <Compile Include="Codes\FormTemplateMethod.cs" />
+    <Compile Include="Interfaces\IPerson.cs" />
+    <Compile Include="Codes\AddParameters.cs" />
+    <Compile Include="Codes\HideMethod.cs" />
+    <Compile Include="Interfaces\IFormatter.cs" />
+    <Compile Include="Codes\IntroduceParameterObject.cs" />
+    <Compile Include="Codes\ParameterMethod.cs" />
+    <Compile Include="Codes\PreserveWholeObject.cs" />
+    <Compile Include="Codes\PullUpConstructorBody.cs" />
+    <Compile Include="Codes\PullUpMethod.cs" />
+    <Compile Include="Codes\PushDownField.cs" />
+    <Compile Include="Codes\PushDownMethod.cs" />
+    <Compile Include="Codes\RemoveParameters.cs" />
+    <Compile Include="Codes\RemoveSettingMethod.cs" />
+    <Compile Include="Codes\ReplaceDelegationWithInheritance.cs" />
+    <Compile Include="Codes\ReplaceInheritanceWithDelegation.cs" />
+    <Compile Include="Codes\ReplaceParameterWithExplicitMethods.cs" />
+    <Compile Include="Codes\ReplaceParameterWMethodCall.cs" />
+    <Compile Include="Codes\SeparetedQuerys.cs" />
+    <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\Credit.cs" />
+    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\Labor.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\NotaFiscal.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderBase.cs" />
+    <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\RawMaterial.cs" />
+    <Compile Include="Models\ServiceItem.cs" />
+    <Compile Include="Models\Summary.cs" />
+    <Compile Include="Models\SummaryBase.cs" />
+    <Compile Include="Models\SummaryHtml.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CnpjFormatter.cs" />
+    <Compile Include="Services\CpfFormatter.cs" />
+    <Compile Include="Services\PriceCalculator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

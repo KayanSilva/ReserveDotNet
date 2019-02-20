@@ -1,4 +1,4 @@
-﻿namespace Refactoring.Class1
+﻿namespace Refactoring.Interfaces
 {
     public interface IPerson
     {
