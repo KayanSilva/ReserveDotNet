@@ -52,6 +52,16 @@
     <Compile Include="Class01\ParameterIn.cs" />
     <Compile Include="Class01\VariaveisOut.cs" />
     <Compile Include="Class01\LocalsAnsReturnsRef.cs" />
+    <Compile Include="Class02\Descartes.cs" />
+    <Compile Include="Class02\Tuplas.cs" />
+    <Compile Include="Class03\PatternMatching.cs" />
+    <Compile Include="Class03\ThrowExpressions.cs" />
+    <Compile Include="Class04\AsyncMain.cs" />
+    <Compile Include="Class04\StandardLiteralExpression.cs" />
+    <Compile Include="Class04\SyntaxEnhancementsofNumericalLiterals.cs" />
+    <Compile Include="Class05\CodeStyle.cs" />
+    <Compile Include="Class05\LocalFunctions.cs" />
+    <Compile Include="Class05\MoreMembersWithBodyExpression.cs" />
     <Compile Include="MenuItem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
