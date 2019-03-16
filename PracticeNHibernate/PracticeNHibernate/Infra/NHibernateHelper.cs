@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection;
+using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
 
@@ -11,9 +7,17 @@ namespace PracticeNHibernate.Infra
 {
     public class NHibernateHelper
     {
+        private static ISessionFactory fabric = CreateSessionFactory();
+
+        private static ISessionFactory CreateSessionFactory()
+        {
+            var cfg = RecuperaConfiguracao();
+            return cfg.BuildSessionFactory();
+        }
+
         public static Configuration RecuperaConfiguracao()
         {
-            Configuration cfg = new Configuration();
+            var cfg = new Configuration();
             cfg.Configure();
             cfg.AddAssembly(Assembly.GetExecutingAssembly());
 
@@ -22,8 +26,13 @@ namespace PracticeNHibernate.Infra
 
         public static void GeraSchema()
         {
-            Configuration cfg = RecuperaConfiguracao();
+            var cfg = RecuperaConfiguracao();
             new SchemaExport(cfg).Create(true, true);
+        }
+
+        public static ISession OpenSession()
+        {
+            return fabric.OpenSession();
         }
     }
 }

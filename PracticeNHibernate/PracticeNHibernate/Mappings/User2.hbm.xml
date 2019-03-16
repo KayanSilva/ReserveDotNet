@@ -7,13 +7,14 @@
     <id name="Id">
       <generator class="identity"/>
     </id>
-    <discriminator column="Type" type="System.String"/>
     <property name="Name"/>
-    <subclass name="PhysicalPerson">
+    <joined-subclass name="PhysicalPerson">
+      <key column="UserId"/>
       <property name="CPF"/>
-    </subclass>
-    <subclass name="LegalPerson">
+    </joined-subclass>
+    <joined-subclass name="LegalPerson">
+      <key column="UserId"/>
       <property name="CNPJ"/>
-    </subclass>
+    </joined-subclass>
   </class>
 </hibernate-mapping>
