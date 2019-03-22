@@ -1,10 +1,10 @@
-﻿using DotNetWithEntity.Entities;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using DotNetWithEntity.Entities;
 using DotNetWithEntity.Interfaces;
 using DotNetWithEntity.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace DotNetWithEntity.Services
 {
@@ -25,7 +25,6 @@ namespace DotNetWithEntity.Services
                 _context.Templates.Add(template);
                 await _context.SaveChangesAsync();
                 success = true;
-
             }
             catch (Exception)
             {
@@ -49,7 +48,6 @@ namespace DotNetWithEntity.Services
                 _context.Entry(template).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
                 success = true;
-
             }
             catch (Exception)
             {

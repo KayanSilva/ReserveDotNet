@@ -1,8 +1,6 @@
-﻿using DotNetWithEntity.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using DotNetWithEntity.Models;
 
 namespace DotNetWithEntity.Interfaces
 {

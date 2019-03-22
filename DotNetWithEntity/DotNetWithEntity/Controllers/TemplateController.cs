@@ -1,11 +1,10 @@
-﻿using DotNetWithEntity.Interfaces;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using DotNetWithEntity.Interfaces;
 using DotNetWithEntity.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DotNetWithEntity.Controllers
 {
@@ -54,14 +53,13 @@ namespace DotNetWithEntity.Controllers
         /// </summary>
         /// <param name="template"></param>
         [HttpPost]
-        [ProducesResponseType(typeof(Template),StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(Template), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> Post([FromBody] Template template)
         {
             var result = await _service.Create(template);
             return Created(nameof(Get), result);
         }
-
 
         /// <summary>
         /// Update template

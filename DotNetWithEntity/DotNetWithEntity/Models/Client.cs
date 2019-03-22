@@ -5,6 +5,5 @@
         public string Cpf { get; set; }
 
         public string NmDependents { get; set; }
-
     }
 }

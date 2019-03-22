@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace DotNetWithEntity.Models
+﻿namespace DotNetWithEntity.Models
 {
     public class Template
     {

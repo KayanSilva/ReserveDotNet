@@ -24,7 +24,7 @@ namespace DotNetWithEntity
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<ITemplateService, TemplateService>();
-            services.AddDbContext<TemplateContext>(options =>   
+            services.AddDbContext<TemplateContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("TemplateContext")));
 
             services.AddSwaggerGen(c =>
