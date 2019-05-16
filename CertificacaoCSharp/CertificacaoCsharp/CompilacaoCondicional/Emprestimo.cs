@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 
-namespace CertificacaoCsharp.IfElse
+namespace _04.ByteBank
 {
     public class Emprestimo
     {
@@ -18,8 +19,8 @@ namespace CertificacaoCsharp.IfElse
             foreach (var caractere in codigoContrato)
             {
                 //só deve ser válido se for numérico ou maiúscula
-                bool numerico = char.IsDigit(caractere);
-                bool maiuscula = char.IsUpper(caractere);
+                bool numerico = Char.IsDigit(caractere);
+                bool maiuscula = Char.IsUpper(caractere);
                 bool valido = numerico || maiuscula;
                 if (!(valido))
                 {
@@ -71,7 +72,7 @@ namespace CertificacaoCsharp.IfElse
         public decimal CalcularJuros(decimal valor, int prazo)
         {
             decimal valorJuros;
-            decimal taxaJuros;
+            decimal taxaJuros = 0;
 
             //1) se o prazo é maior que zero E menor que 5 E
             //o valor é menor que 7 mil, a taxa de juros é 3,5%
