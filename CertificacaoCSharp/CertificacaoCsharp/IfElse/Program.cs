@@ -3,11 +3,11 @@ using System.Text.RegularExpressions;
 
 namespace CertificacaoCsharp.IfElse
 {
-    class Program
+    internal class Program
     {
-        delegate void ItemMenu();
+        private delegate void ItemMenu();
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             //ContaBancaria conta = new ContaBancaria(100);
             //conta.SacarDinheiro(35);
@@ -84,7 +84,6 @@ namespace CertificacaoCsharp.IfElse
                 }
             }
             while (opcao != 0);
-
         }
     }
 }

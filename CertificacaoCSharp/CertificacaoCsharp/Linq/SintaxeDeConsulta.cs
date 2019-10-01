@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
 
 namespace CertificacaoCsharp.Linq
 {
-    class SintaxeDeConsulta
+    internal class SintaxeDeConsulta
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var filmes = GetFilmes();
             var diretores = GetDiretores();
@@ -51,7 +50,6 @@ namespace CertificacaoCsharp.Linq
                     Diretor = f.Diretor.Nome
                 };
             Imprimir(consulta2);
-
 
             var consulta3 =
                 from f in filmes
@@ -154,8 +152,6 @@ namespace CertificacaoCsharp.Linq
 
                 pagina++;
             }
-
-
 
             Console.ReadKey();
         }
@@ -264,13 +260,13 @@ namespace CertificacaoCsharp.Linq
         }
     }
 
-    class Diretor
+    internal class Diretor
     {
         public int Id { get; set; }
         public string Nome { get; set; }
     }
 
-    class Filme
+    internal class Filme
     {
         public int DiretorId { get; set; }
         public Diretor Diretor { get; set; }
@@ -279,7 +275,7 @@ namespace CertificacaoCsharp.Linq
         public int Minutos { get; set; }
     }
 
-    class FilmeResumido
+    internal class FilmeResumido
     {
         public string Titulo { get; set; }
         public string Diretor { get; set; }

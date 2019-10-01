@@ -2,7 +2,7 @@
 
 namespace CertificacaoCsharp.IfElse
 {
-    class ContaBancaria
+    internal class ContaBancaria
     {
         private decimal saldo = 0m;
 
@@ -21,7 +21,6 @@ namespace CertificacaoCsharp.IfElse
             }
             Sacar(quantia);
             ImprimirComprovante();
-
 
             ///<image url="$(ProjectDir)\img3.png"/>
         }

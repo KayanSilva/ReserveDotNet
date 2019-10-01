@@ -1,14 +1,14 @@
-﻿using System;
+﻿using CertificacaoCsharp.IfElse;
+using System;
 using System.Text.RegularExpressions;
-using CertificacaoCsharp.IfElse;
 
 namespace CertificacaoCsharp.CompilacaoCondicional
 {
-    class Program
+    internal class Program
     {
-        delegate void ItemMenu();
+        private delegate void ItemMenu();
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             //ContaBancaria conta = new ContaBancaria(100);
             //conta.SacarDinheiro(35);
@@ -80,7 +80,6 @@ namespace CertificacaoCsharp.CompilacaoCondicional
                 }
             }
             while (opcao != 0);
-
         }
     }
 }
