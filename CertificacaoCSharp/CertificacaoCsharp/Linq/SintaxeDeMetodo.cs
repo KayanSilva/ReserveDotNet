@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
 
 namespace CertificacaoCsharp.Linq
 {
-    class SintaxeDeConsulta
+    class SintaxeDeMetodo
     {
         static void Main(string[] args)
         {
@@ -23,69 +22,77 @@ namespace CertificacaoCsharp.Linq
 
             filmes.Add(novoFilme);
 
+            Console.WriteLine("\nTodos os filmes");
+            Console.WriteLine("===============");
             Imprimir(filmes);
 
-            //LINQ = CONSULTA INTEGRADA À LINGUAGEM
 
-            //SELECT f.*
-            //FROM filmes AS f  //ALIAS
-            //WHERE f.Diretor = "Tim Burton"
+
+            Console.WriteLine("\nFiltrando por nome de diretor");
+            Console.WriteLine("=============================");
+            //var consulta =
+            //    from f in filmes
+            //    where f.Diretor.Nome == "Tim Burton"
+            //    select f;
 
             var consulta =
-                from f in filmes
-                where f.Diretor.Nome == "Tim Burton"
-                select f;
+            filmes.Where(f => f.Diretor.Nome == "Tim Burton");
+
 
             Imprimir(consulta);
 
-            //SELECT f.Nome AS Titulo, f.Diretor
-            //FROM filmes AS f  //ALIAS
-            //WHERE f.Diretor = "Tim Burton"
 
+            Console.WriteLine("\nFiltrando e projetando resultado");
+            Console.WriteLine("================================");
+            //var consulta2 =
+            //    from f in filmes
+            //    where f.Diretor.Nome == "Tim Burton"
+            //    select new FilmeResumido
+            //    {
+            //        Titulo = f.Titulo,
+            //        Diretor = f.Diretor.Nome
+            //    };
             var consulta2 =
-                from f in filmes
-                where f.Diretor.Nome == "Tim Burton"
-                select new FilmeResumido
-                {
-                    Titulo = f.Titulo,
-                    Diretor = f.Diretor.Nome
-                };
-            Imprimir(consulta2);
-
-
-            var consulta3 =
-                from f in filmes
-                where f.Diretor.Nome == "Tim Burton"
-                select new //OBJETO ANÔNIMO
-                {
-                    f.Titulo,
-                    Diretor = f.Diretor.Nome
-                };
-
-            Console.WriteLine($"{"Título",-40} {"Diretor",-20}");
-            Console.WriteLine(new string('=', 64));
-            foreach (var filme in consulta3)
+            filmes
+            .Where(f => f.Diretor.Nome == "Tim Burton")
+            .Select(f => new FilmeResumido
             {
-                Console.WriteLine($"{filme.Titulo,-40} {filme.Diretor,-20}");
-            }
-            Console.WriteLine();
+                Titulo = f.Titulo,
+                Diretor = f.Diretor.Nome
+            });
 
-            //SELECT f.Nome AS Titulo, d.Nome AS Diretor
-            //FROM filmes AS f  //ALIAS
-            //INNER JOIN diretores AS d
-            //  ON d.Id = f.DiretorId
-            //WHERE d.Nome = "Tim Burton"
+            foreach (var item in consulta2)
+            {
+                Console.WriteLine("{0} - {1}", item.Titulo, item.Diretor);
+            }
+
+
+            Console.WriteLine("\nRelacionando duas sequências");
+            Console.WriteLine("============================");
+
+            //var consulta4 =
+            //    from f in filmes
+            //    join d in diretores
+            //        on f.DiretorId equals d.Id
+            //    where f.Diretor.Nome == "Tim Burton"
+            //    select new //OBJETO ANÔNIMO
+            //    {
+            //        f.Titulo,
+            //        Diretor = d.Nome
+            //    };
 
             var consulta4 =
-                from f in filmes
-                join d in diretores
-                    on f.DiretorId equals d.Id
-                where f.Diretor.Nome == "Tim Burton"
-                select new //OBJETO ANÔNIMO
-                {
-                    f.Titulo,
-                    Diretor = d.Nome
-                };
+            filmes
+            .Join(diretores,
+            f => f.DiretorId,
+            d => d.Id,
+            (f, d) => new { f, d })
+            .Where(x => x.f.Diretor.Nome == "Tim Burton")
+            .Select(x => new //OBJETO ANÔNIMO
+            {
+                x.f.Titulo,
+                Diretor = x.d.Nome
+            });
 
             Console.WriteLine($"{"Título",-40} {"Diretor",-20}");
             Console.WriteLine(new string('=', 64));
@@ -95,12 +102,9 @@ namespace CertificacaoCsharp.Linq
             }
             Console.WriteLine();
 
-            //SELECT d.Nome AS Diretor, COUNT(*) AS Quantidade
-            //FROM filmes AS f  //ALIAS
-            //INNER JOIN diretores AS d
-            //  ON d.Id = f.DiretorId
-            //GROUP BY d.Id
 
+            Console.WriteLine("\nAgrupando consulta");
+            Console.WriteLine("==================");
             var consulta5 =
                 from f in filmes
                 join d in diretores
@@ -135,26 +139,6 @@ namespace CertificacaoCsharp.Linq
                     $"\t{item.Media}");
             }
 
-            int tamanhoPagina = 4;
-            int pagina = 0;
-
-            while (pagina * tamanhoPagina < filmes.Count())
-            {
-                Console.WriteLine();
-                Console.WriteLine("Página: " + (pagina + 1));
-                Console.WriteLine();
-
-                var relatorio =
-                    from f in filmes
-                        .Skip(pagina * tamanhoPagina)
-                        .Take(tamanhoPagina)
-                    select f;
-
-                Imprimir(relatorio);
-
-                pagina++;
-            }
-
             Console.ReadKey();
         }
 
@@ -166,7 +150,6 @@ namespace CertificacaoCsharp.Linq
             {
                 Console.WriteLine($"{filme.Titulo,-40} {filme.Diretor.Nome,-20} {filme.Ano,4}");
             }
-            Console.WriteLine();
         }
 
         private static void Imprimir(IEnumerable<FilmeResumido> filmes)
@@ -260,31 +243,5 @@ namespace CertificacaoCsharp.Linq
                 }
             };
         }
-    }
-
-    class Diretor
-    {
-        public int Id { get; set; }
-        public string Nome { get; set; }
-    }
-
-    class Filme
-    {
-        public int DiretorId { get; set; }
-        public Diretor Diretor { get; set; }
-        public string Titulo { get; set; }
-        public int Ano { get; set; }
-        public int Minutos { get; set; }
-
-        public override string ToString()
-        {
-            return $"{Diretor.Nome} - {Titulo}";
-        }
-    }
-
-    class FilmeResumido
-    {
-        public string Titulo { get; set; }
-        public string Diretor { get; set; }
     }
 }
