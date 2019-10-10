@@ -4,9 +4,10 @@ using System.Text.RegularExpressions;
 
 namespace CertificacaoCsharp.WhileAndDo
 {
-    class MenuCaixaEletronico
+    internal class MenuCaixaEletronico
     {
-        delegate void ItemMenu();
+        private delegate void ItemMenu();
+
         public void Executar()
         {
             var itensMenu = new ItemMenu[]

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 
 namespace _04.ByteBank
@@ -76,7 +75,7 @@ namespace _04.ByteBank
 
             //1) se o prazo é maior que zero E menor que 5 E
             //o valor é menor que 7 mil, a taxa de juros é 3,5%
-            //   1.1) senão, se o prazo for maior que 5 
+            //   1.1) senão, se o prazo for maior que 5
             //        E o valor for maior que 7 mil, a taxa é 7,5%
             //   1.2) senão, a taxa de juros é 8,75%
 

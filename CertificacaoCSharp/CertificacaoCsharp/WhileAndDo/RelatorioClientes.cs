@@ -3,7 +3,7 @@ using System.IO;
 
 namespace CertificacaoCsharp.WhileAndDo
 {
-    class RelatorioClientes
+    internal class RelatorioClientes
     {
         public static void ImprimirListagemClientes()
         {

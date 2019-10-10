@@ -2,11 +2,11 @@
 
 namespace CertificacaoCsharp.Eventos
 {
-    class Lambda
+    internal class Lambda
     {
-        delegate int Operacao(int a, int b);
+        private delegate int Operacao(int a, int b);
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Operacao operacao = (x, y) => x + y; //expressão lambda
             Console.WriteLine(operacao(3, 2));

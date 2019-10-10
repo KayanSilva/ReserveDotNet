@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace CertificacaoCsharp.Linq
 {
-    class Consultar
+    internal class Consultar
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var filmes = GetFilmes();
 

@@ -2,9 +2,9 @@
 
 namespace CertificacaoCsharp.Eventos
 {
-    class CriarUmEvento
+    internal class CriarUmEvento
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Campainha1 campainha = new Campainha1();
             campainha.OnCampainhaTocou1 += CampainhaTocou1;
@@ -17,20 +17,20 @@ namespace CertificacaoCsharp.Eventos
             campainha.Tocar();
 
             Console.ReadKey();
-
         }
 
-        static void CampainhaTocou1()
+        private static void CampainhaTocou1()
         {
             Console.WriteLine("A campainha tocou.(1)");
         }
-        static void CampainhaTocou2()
+
+        private static void CampainhaTocou2()
         {
             Console.WriteLine("A campainha tocou.(2)");
         }
     }
 
-    class Campainha1
+    internal class Campainha1
     {
         public Action OnCampainhaTocou1 { get; set; }
 

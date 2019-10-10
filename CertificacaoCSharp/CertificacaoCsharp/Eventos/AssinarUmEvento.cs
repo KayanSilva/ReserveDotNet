@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace CertificacaoCsharp.Eventos
 {
-    class AssinarUmEvento
+    internal class AssinarUmEvento
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             try
             {
@@ -34,19 +34,20 @@ namespace CertificacaoCsharp.Eventos
             Console.ReadKey();
         }
 
-        static void CampainhaTocou3(object sender, CampainhaEventArgs args)
+        private static void CampainhaTocou3(object sender, CampainhaEventArgs args)
         {
             Console.WriteLine("A campainha tocou no apartamento " + args.Apartamento + " .(1)");
             throw new Exception("Ocorreu um erro em CampainhaTocou1");
         }
-        static void CampainhaTocou2(object sender, CampainhaEventArgs args)
+
+        private static void CampainhaTocou2(object sender, CampainhaEventArgs args)
         {
             Console.WriteLine("A campainha tocou no apartamento " + args.Apartamento + " .(2)");
             throw new Exception("Ocorreu um erro em CampainhaTocou2");
         }
     }
 
-    class Campainha2
+    internal class Campainha2
     {
         public event EventHandler<CampainhaEventArgs> OnCampainhaTocou2;
 
@@ -69,7 +70,7 @@ namespace CertificacaoCsharp.Eventos
         }
     }
 
-    class CampainhaEventArgs : EventArgs
+    internal class CampainhaEventArgs : EventArgs
     {
         public CampainhaEventArgs(string apartamento) => Apartamento = apartamento;
 

@@ -2,18 +2,18 @@
 
 namespace CertificacaoCsharp.IfElse
 {
-    class ExemplosComIf
+    internal class ExemplosComIf
     {
         public static void IfSemElse()
         {
-            // instrução if sem um else  
+            // instrução if sem um else
             bool condicao = true;
             if (condicao)
             {
                 //instrução then;
                 FacaAlgo();
             }
-            // Próxima instrução do programa. 
+            // Próxima instrução do programa.
         }
 
         public static void IfElse()
@@ -147,7 +147,7 @@ namespace CertificacaoCsharp.IfElse
                 Console.WriteLine("m não é o menor.");
             }
 
-            // NOT e OR  
+            // NOT e OR
             m1 = 4;
             if (!(m1 >= n1 || m1 >= p1))
             {

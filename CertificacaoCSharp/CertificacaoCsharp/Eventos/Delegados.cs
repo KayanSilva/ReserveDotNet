@@ -2,11 +2,11 @@
 
 namespace CertificacaoCsharp.Eventos
 {
-    class Delegados
+    internal class Delegados
     {
-        delegate int Operacao(int a, int b);
+        private delegate int Operacao(int a, int b);
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             int a = 3;
             int b = 2;
@@ -22,13 +22,13 @@ namespace CertificacaoCsharp.Eventos
             Console.ReadKey();
         }
 
-        static int Somar(int a, int b)
+        private static int Somar(int a, int b)
         {
             Console.WriteLine($"A operação Somar foi chamada com a = {a} e b = {b}");
             return a + b;
         }
 
-        static int Subtrair(int a, int b)
+        private static int Subtrair(int a, int b)
         {
             Console.WriteLine($"A operação Subtrair foi chamada com a = {a} e b = {b}");
             return a - b;
