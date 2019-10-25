@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 
 namespace CertificacaoCsharp.SistemaDeArquivos
 {
@@ -12,23 +13,18 @@ namespace CertificacaoCsharp.SistemaDeArquivos
             //Listar todos os diretórios do projeto
             //Listar todos os arquivos csharp (.cs) do projeto
 
-            DirectoryInfo diretorioInicial = new DirectoryInfo(@"..\..\..");
+            var diretorioInicial = new DirectoryInfo(@"..\..\..");
             ListarDiretorios(diretorioInicial);
         }
 
         private static void ListarDiretorios(DirectoryInfo diretorioInicial)
         {
-            foreach (var diretorio in diretorioInicial.GetDirectories())
+            diretorioInicial.GetDirectories().ToList().ForEach(diretorio =>
             {
                 Console.WriteLine(diretorio.FullName);
-
-                foreach (var arquivo in diretorio.GetFiles("*.cs"))
-                {
-                    Console.WriteLine(arquivo.FullName);
-                }
-
+                diretorio.GetFiles(".cs").ToList().ForEach(arquivo => Console.WriteLine(arquivo.FullName));
                 ListarDiretorios(diretorio);
-            }
+            });
         }
     }
 }

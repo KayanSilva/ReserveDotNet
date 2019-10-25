@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CertificacaoCsharp", "CertificacaoCsharp\CertificacaoCsharp.csproj", "{C40EC637-AA3D-4A94-B203-76F76F675EC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CertificacaoCsharp", "CertificacaoCsharp\CertificacaoCsharp.csproj", "{C40EC637-AA3D-4A94-B203-76F76F675EC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinForms_Async", "WinForms_Async\WinForms_Async.csproj", "{1906ED40-BC25-4083-92DF-5EA0BCBCC892}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{C40EC637-AA3D-4A94-B203-76F76F675EC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C40EC637-AA3D-4A94-B203-76F76F675EC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C40EC637-AA3D-4A94-B203-76F76F675EC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1906ED40-BC25-4083-92DF-5EA0BCBCC892}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1906ED40-BC25-4083-92DF-5EA0BCBCC892}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1906ED40-BC25-4083-92DF-5EA0BCBCC892}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1906ED40-BC25-4083-92DF-5EA0BCBCC892}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
