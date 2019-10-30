@@ -4,7 +4,7 @@ namespace CertificacaoCsharp.Eventos
 {
     internal class CriarUmEvento
     {
-        private static void Main(string[] args)
+        private static void XMain(string[] args)
         {
             Campainha1 campainha = new Campainha1();
             campainha.OnCampainhaTocou1 += CampainhaTocou1;

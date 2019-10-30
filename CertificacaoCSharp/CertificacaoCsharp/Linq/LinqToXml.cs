@@ -7,7 +7,7 @@ namespace CertificacaoCsharp.Linq
 {
     class LinqToXml
     {
-        static void Main(string[] args)
+        static void XMain(string[] args)
         {
             string xml =
             "<Filmes>" +

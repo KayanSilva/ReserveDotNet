@@ -6,7 +6,7 @@ namespace CertificacaoCsharp.Eventos
     {
         private delegate int Operacao(int a, int b);
 
-        private static void Main(string[] args)
+        private static void xMain(string[] args)
         {
             Operacao operacao = (x, y) => x + y; //expressão lambda
             Console.WriteLine(operacao(3, 2));

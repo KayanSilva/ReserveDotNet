@@ -6,7 +6,7 @@ namespace CertificacaoCsharp.Linq
 {
     class SintaxeDeMetodo
     {
-        static void Main(string[] args)
+        static void XMain(string[] args)
         {
             var filmes = GetFilmes();
             var diretores = GetDiretores();

@@ -6,7 +6,7 @@ namespace CertificacaoCsharp.Eventos
     {
         private delegate int Operacao(int a, int b);
 
-        private static void Main(string[] args)
+        private static void XMain(string[] args)
         {
             int a = 3;
             int b = 2;

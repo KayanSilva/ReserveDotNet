@@ -6,7 +6,7 @@ namespace CertificacaoCsharp.Linq
 {
     class ForcarExecucao
     {
-        static void Main(string[] args)
+        static void XMain(string[] args)
         {
             List<Diretor> diretores = GetDiretores();
             List<Filme> filmes = GetFilmes();

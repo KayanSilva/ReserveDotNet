@@ -5,7 +5,7 @@ namespace CertificacaoCsharp.Eventos
 {
     internal class AssinarUmEvento
     {
-        private static void Main(string[] args)
+        private static void XMain(string[] args)
         {
             try
             {

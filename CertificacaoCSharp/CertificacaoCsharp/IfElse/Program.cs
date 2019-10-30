@@ -7,7 +7,7 @@ namespace CertificacaoCsharp.IfElse
     {
         private delegate void ItemMenu();
 
-        private static void Main(string[] args)
+        private static void XMain(string[] args)
         {
             //ContaBancaria conta = new ContaBancaria(100);
             //conta.SacarDinheiro(35);

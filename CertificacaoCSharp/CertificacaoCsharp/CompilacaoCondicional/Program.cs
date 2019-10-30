@@ -8,7 +8,7 @@ namespace CertificacaoCsharp.CompilacaoCondicional
     {
         private delegate void ItemMenu();
 
-        private static void Main(string[] args)
+        private static void XXMain(string[] args)
         {
             //ContaBancaria conta = new ContaBancaria(100);
             //conta.SacarDinheiro(35);

@@ -6,7 +6,7 @@ namespace CertificacaoCsharp.Linq
 {
     internal class SintaxeDeConsulta
     {
-        private static void Main(string[] args)
+        private static void XMain(string[] args)
         {
             var filmes = GetFilmes();
             var diretores = GetDiretores();
@@ -284,5 +284,6 @@ namespace CertificacaoCsharp.Linq
     {
         public string Titulo { get; set; }
         public string Diretor { get; set; }
+        public string NomeDiretor { get; set; }
     }
 }

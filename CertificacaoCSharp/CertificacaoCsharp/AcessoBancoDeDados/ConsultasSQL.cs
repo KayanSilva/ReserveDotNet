@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CertificacaoCsharp.AcessoBancoDeDados
 {
-    class ComandoAtualizacao
+    class ConsultasSQL
     {
         private const string DatabaseServer = "(LocalDB)\\MSSQLLocalDB";
         private const string MasterDatabase = "master";
@@ -20,19 +20,23 @@ namespace CertificacaoCsharp.AcessoBancoDeDados
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
+                await ListarFilmes(connection);
 
-                //TAREFA:
-                //1. Mudar o nome do primeiro diretor para "Quentin Tarantino"
-                //2. Contar quantas linhas foram atualizadas
+                //TAREFA: EVITAR A TÉCNICA DE SQL INJECTION
 
-                var sql = "UPDATE Diretores SET Nome = 'Quentin Tarantino' WHERE Id = 1";
-                using (var comando = new SqlCommand(sql, connection))
-                {
-                    var linhas = await comando.ExecuteNonQueryAsync();
+                Console.Write("Digite o Id do filme a ser alterado: ");
+                string filmeId = Console.ReadLine();
+                Console.Write("Digite o novo título do filme: ");
+                string novoTitulo = Console.ReadLine();
+                string textoComando = "UPDATE Filmes SET Titulo=@novoTitulo WHERE Id = @filmeId";
+                SqlCommand command = new SqlCommand(textoComando, connection);
 
-                    Console.WriteLine("Número de linhas atualizadas: {0}", linhas);
-                }
+                command.Parameters.AddWithValue("@novoTitulo", novoTitulo);
+                command.Parameters.AddWithValue("@filmeId", filmeId);
 
+                int result = command.ExecuteNonQuery();
+
+                Console.WriteLine("Número de linhas atualizadas: {0}", result);
                 await ListarFilmes(connection);
             }
 
@@ -43,7 +47,7 @@ namespace CertificacaoCsharp.AcessoBancoDeDados
         static async Task ListarFilmes(SqlConnection connection)
         {
             SqlCommand command = new SqlCommand(
-                " SELECT d.Id AS DiretorId, d.Nome AS Diretor, f.Titulo AS Titulo" +
+                " SELECT d.Nome AS Diretor, f.Id, f.Titulo AS Titulo" +
                 " FROM Filmes AS f" +
                 " INNER JOIN Diretores AS d" +
                 "   ON d.Id = f.DiretorId"
@@ -52,10 +56,10 @@ namespace CertificacaoCsharp.AcessoBancoDeDados
 
             while (await reader.ReadAsync())
             {
-                string diretorId = reader["DiretorId"].ToString();
                 string diretor = reader["Diretor"].ToString();
+                string filmeId = reader["Id"].ToString();
                 string titulo = reader["Titulo"].ToString();
-                Console.WriteLine("DiretorId: {0}, Nome: {1}, Título: {2}", diretorId, diretor, titulo);
+                Console.WriteLine("Diretor: {0}, Titulo: {1}-{2}", diretor, filmeId, titulo);
             }
             reader.Close();
         }
@@ -98,7 +102,7 @@ namespace CertificacaoCsharp.AcessoBancoDeDados
         private static async Task InserirRegistrosAsync()
         {
             string sql = @"
-                    INSERT Diretores (Nome) VALUES ('Quentin Jerome Tarantino');
+                    INSERT Diretores (Nome) VALUES ('Quentin Tarantino');
                     INSERT Diretores (Nome) VALUES ('James Cameron');
                     INSERT Diretores (Nome) VALUES ('Tim Burton');
 
@@ -107,9 +111,9 @@ namespace CertificacaoCsharp.AcessoBancoDeDados
                     INSERT Filmes (DiretorId, Titulo, Ano, Minutos) VALUES (1, 'Kill Bill Volume 1', 2003,	111);
                     INSERT Filmes (DiretorId, Titulo, Ano, Minutos) VALUES (2, 'Avatar', 2009,	162);
                     INSERT Filmes (DiretorId, Titulo, Ano, Minutos) VALUES (2, 'Titanic', 1997,	194);
-                    INSERT Filmes (DiretorId, Titulo, Ano, Minutos) VALUES (2, 'O Exterminador do Futuro', 1984,	107);
+                    INSERT Filmes (DiretorId, Titulo, Ano, Minutos) VALUES (2, 'O Exterminador', 1984,	107);
                     INSERT Filmes (DiretorId, Titulo, Ano, Minutos) VALUES (3, 'O Estranho Mundo de Jack', 1993,	76);
-                    INSERT Filmes (DiretorId, Titulo, Ano, Minutos) VALUES (3, 'Alice no País das Maravilhas', 2010,	108);
+                    INSERT Filmes (DiretorId, Titulo, Ano, Minutos) VALUES (3, 'Alice', 2010,	108);
                     INSERT Filmes (DiretorId, Titulo, Ano, Minutos) VALUES (3, 'A Noiva Cadáver', 2005,	77);
                     INSERT Filmes (DiretorId, Titulo, Ano, Minutos) VALUES (3, 'A Fantástica Fábrica de Chocolate', 2005,	115);";
             await ExecutarComandoAsync(sql, DatabaseName);
@@ -125,7 +129,7 @@ namespace CertificacaoCsharp.AcessoBancoDeDados
                 await comando.ExecuteNonQueryAsync();
                 Console.WriteLine("Script executado com sucesso.");
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }

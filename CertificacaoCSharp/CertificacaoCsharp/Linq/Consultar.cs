@@ -5,7 +5,7 @@ namespace CertificacaoCsharp.Linq
 {
     internal class Consultar
     {
-        private static void Main(string[] args)
+        private static void XMain(string[] args)
         {
             var filmes = GetFilmes();
 
