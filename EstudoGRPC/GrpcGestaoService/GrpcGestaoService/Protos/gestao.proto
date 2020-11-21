@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcGestaoService.Protos";
+
+package gestao;
+
+// The greeting service definition.
+service Gestao {
+  // Sends a greeting
+  rpc ChamadaTesteService (ExampleRequest) returns (ExampleResponse);
+}
+
+// The request message containing the user's name.
+message ExampleRequest {
+  string mensagem = 1;
+  bool testado = 2;
+  int32 status = 3;
+}
+
+// The response message containing the greetings.
+message ExampleResponse {
+  int32 id = 1;
+  string nome = 2;
+}
