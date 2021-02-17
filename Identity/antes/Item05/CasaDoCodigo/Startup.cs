@@ -77,6 +77,54 @@ namespace CasaDoCodigo
             services.AddTransient<IProdutoRepository, ProdutoRepository>();
             services.AddTransient<IPedidoRepository, PedidoRepository>();
             services.AddTransient<ICadastroRepository, CadastroRepository>();
+            services.AddTransient<IRelatorioHelper, RelatorioHelper>();
+
+            //TAREFA: Permitir login externo 
+            //com a conta da Microsoft
+            //https://apps.dev.microsoft.com/
+
+            //TAREFA: Permitir login externo 
+            //com a conta do Google
+            //https://developers.google.com/identity/sign-in/web/sign-in
+
+
+            //HABILITE ESTAS LINHAS ABAIXO APENAS
+            //APÓS CONFIGURAR SUA APLICAÇÃO NA MICROSOFT E NO GOOGLE.
+
+            //services.AddAuthentication()
+            //    .AddMicrosoftAccount(options =>
+            //    {
+            //        options.ClientId = Configuration["ExternalLogin:Microsoft:ClientId"];
+            //        options.ClientSecret = Configuration["ExternalLogin:Microsoft:ClientSecret"];
+            //    })
+            //    .AddGoogle(options =>
+            //    {
+            //        options.ClientId = Configuration["ExternalLogin:Google:ClientId"];
+            //        options.ClientSecret = Configuration["ExternalLogin:Google:ClientSecret"];
+            //    });
+
+            services.AddAuthentication(options =>
+            {
+                //forma de autenticação local do usuário
+                options.DefaultScheme = "Cookies";
+                //protocolo que define o fluxo de autenticação
+                options.DefaultChallengeScheme = "OpenIdConnect";
+            })
+            .AddCookie()
+            .AddOpenIdConnect(options =>
+            {
+                options.SignInScheme = "Cookies";
+                options.Authority = "http://localhost:5000";
+                options.ClientId = "CasaDoCodigo.MVC";
+                options.ClientSecret = "49C1A7E1-0C79-4A89-A3D6-A37998FB86B0";
+                options.SaveTokens = true;
+                //1) autorização e 2) identidade do usuário
+                options.ResponseType = "code id_token";
+                //código de autorização + token de identidade
+                options.RequireHttpsMetadata = false;
+            });
+
+            services.AddHttpClient<IRelatorioHelper, RelatorioHelper>();
         }
 
 

@@ -1,18 +1,20 @@
-﻿using CasaDoCodigo.Models;
+﻿using CasaDoCodigo.Areas.Identity.Data;
+using CasaDoCodigo.Models;
 using CasaDoCodigo.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CasaDoCodigo.Repositories
 {
     //MELHORIA: 6) Repositórios simplificados
+
     public interface IPedidoRepository
     {
         Task<Pedido> GetPedidoAsync();
@@ -21,21 +23,28 @@ namespace CasaDoCodigo.Repositories
         Task<Pedido> UpdateCadastroAsync(Cadastro cadastro);
     }
 
+    //TAREFA 06: INJETAR UserManager PARA OBTER clienteId
     public class PedidoRepository : BaseRepository<Pedido>, IPedidoRepository
     {
         private readonly IHttpContextAccessor contextAccessor;
         private readonly IHttpHelper httpHelper;
         private readonly ICadastroRepository cadastroRepository;
+        private readonly UserManager<AppIdentityUser> userManager;
+        private readonly IRelatorioHelper relatorioHelper;
 
         public PedidoRepository(IConfiguration configuration,
             ApplicationContext contexto,
             IHttpContextAccessor contextAccessor,
             IHttpHelper sessionHelper,
-            ICadastroRepository cadastroRepository) : base(configuration, contexto)
+            ICadastroRepository cadastroRepository,
+            UserManager<AppIdentityUser> userManager,
+            IRelatorioHelper relatorioHelper) : base(configuration, contexto)
         {
             this.contextAccessor = contextAccessor;
             this.httpHelper = sessionHelper;
             this.cadastroRepository = cadastroRepository;
+            this.userManager = userManager;
+            this.relatorioHelper = relatorioHelper;
         }
 
         public async Task AddItemAsync(string codigo)
@@ -83,7 +92,9 @@ namespace CasaDoCodigo.Repositories
 
             if (pedido == null)
             {
-                pedido = new Pedido(httpHelper.GetCadastro());
+                var claimsPrincipal = contextAccessor.HttpContext.User;
+                var clienteId = userManager.GetUserId(claimsPrincipal);
+                pedido = new Pedido(clienteId);
                 await dbSet.AddAsync(pedido);
                 await contexto.SaveChangesAsync();
                 httpHelper.SetPedidoId(pedido.Id);
@@ -121,7 +132,7 @@ namespace CasaDoCodigo.Repositories
             var pedido = await GetPedidoAsync();
             await cadastroRepository.UpdateAsync(pedido.Cadastro.Id, cadastro);
             httpHelper.ResetPedidoId();
-            httpHelper.SetCadastro(pedido.Cadastro);
+            await relatorioHelper.GerarRelatorio(pedido);
             return pedido;
         }
 

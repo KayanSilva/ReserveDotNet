@@ -77,6 +77,32 @@ namespace CasaDoCodigo
             services.AddTransient<IProdutoRepository, ProdutoRepository>();
             services.AddTransient<IPedidoRepository, PedidoRepository>();
             services.AddTransient<ICadastroRepository, CadastroRepository>();
+            services.AddTransient<IRelatorioHelper, RelatorioHelper>();
+
+            //TAREFA: Permitir login externo 
+            //com a conta da Microsoft
+            //https://apps.dev.microsoft.com/
+
+            //TAREFA: Permitir login externo 
+            //com a conta do Google
+            //https://developers.google.com/identity/sign-in/web/sign-in
+
+
+            //HABILITE ESTAS LINHAS ABAIXO APENAS
+            //APÓS CONFIGURAR SUA APLICAÇÃO NA MICROSOFT E NO GOOGLE.
+
+            //services.AddAuthentication()
+            //    .AddMicrosoftAccount(options =>
+            //    {
+            //        options.ClientId = Configuration["ExternalLogin:Microsoft:ClientId"];
+            //        options.ClientSecret = Configuration["ExternalLogin:Microsoft:ClientSecret"];
+            //    })
+            //    .AddGoogle(options =>
+            //    {
+            //        options.ClientId = Configuration["ExternalLogin:Google:ClientId"];
+            //        options.ClientSecret = Configuration["ExternalLogin:Google:ClientSecret"];
+            //    });
+            services.AddHttpClient<IRelatorioHelper, RelatorioHelper>();
         }
 
 
