@@ -8,8 +8,7 @@ namespace Program03
         {
             try
             {
-                ContaCorrente conta =
-                    new ContaCorrente("1235-7", "José da Silva", 100.0m);
+                ContaCorrente conta = new ContaCorrente("1235-7", "José da Silva", 100.0m);
 
                 Console.WriteLine(conta);
                 Console.WriteLine();
@@ -24,7 +23,7 @@ namespace Program03
                 Console.WriteLine(conta);
                 Console.WriteLine();
             }
-            catch   (Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }

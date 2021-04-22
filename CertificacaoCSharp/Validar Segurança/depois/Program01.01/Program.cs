@@ -27,10 +27,7 @@ namespace Program01_01
     {
         static void Main(string[] args)
         {
-            Filme filme =
-                new Filme(diretor: "James Cameron",
-                titulo: "Titanic",
-                duracaoMinutos: 194);
+            Filme filme = new Filme(diretor: "James Cameron", titulo: "Titanic", duracaoMinutos: 194);
 
             string json = JsonConvert.SerializeObject(filme);
             Console.WriteLine("JSON: ");
