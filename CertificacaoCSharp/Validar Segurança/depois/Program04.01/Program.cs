@@ -40,13 +40,9 @@ namespace Program04
 
             bool registroValido = Regex.IsMatch(entrada3, padrao);
             if (registroValido)
-            {
                 Console.WriteLine("Registro de filme VÁLIDO");
-            }
             else
-            {
                 Console.WriteLine("Registro de filme INVÁLIDO");
-            }
 
             Console.ReadLine();
         }

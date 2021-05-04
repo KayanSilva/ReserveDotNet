@@ -64,9 +64,8 @@ namespace Program06._01
         {
             Console.Write(titulo);
             foreach (byte b in bytes)
-            {
                 Console.Write("{0:X} ", b);
-            }
+            
             Console.WriteLine();
         }
     }
